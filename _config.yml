@@ -1,0 +1,20 @@
+# Site settings
+title: Koast Documentation
+email: evan@rangle.io
+description: > # this means to ignore newlines until "baseurl:"
+  Documentation for the Koast project.
+baseurl: /koast-documentation # the subpath of your site, e.g. /blog/
+url: "http://e-schultz.github.com" # the base hostname & protocol for your site
+twitter_username: rangleio
+github_username:  rangle
+
+# Build settings
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  use_coderay: true
+  coderay:
+    coderay_line_numbers:      table
+    coderay_css:               class
