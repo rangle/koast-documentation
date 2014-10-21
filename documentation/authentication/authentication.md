@@ -9,6 +9,7 @@ categories:
   - koast-server
 weight: 400
 top: true
+
 anchors:
   authentication-options : Authentication Options
   example-projects: Example Projects

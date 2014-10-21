@@ -25,9 +25,31 @@ Your application should have a configuration structure like:
 
 the app.json contains common configuration that will be used across all environment as the base default settings. Each environment can have custom configuration in the appropriate .json file.
 
+### Environment Specific Configuration ###
+
 Koast will pick up the environment from the NODE_ENV setting, if none is found it will default to development.
 
+Koast will normalize the environment names, so that 'dev' will look for development.json
+
+ Environment | Config File
+ ------------|------------
+ dev         | development.json
+ development | development.json
+ stag        | staging.json
+ staging     | staging.json
+ prod        | production.json
+ production  | production.json
+
+<br/>
+You are able to also specify a custom environment name - in which case Koast
+will look for an environmentName.json file to merge into the defaults.
+
+Koast will first load the settings in the app.json file, once loaded - it will load up the appropriate environment.json file, and merge the results.
+
+
+
 A full app.json might look something like:
+
 {% highlight json %}
 {
   "app": {
