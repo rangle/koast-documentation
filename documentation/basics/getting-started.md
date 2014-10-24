@@ -36,7 +36,7 @@ and in your application directory:
 Koast includes an initializer option. simply type `koast init` from  your project directory and it will prompt you for a few basic questions.
 
 ```
- _                   _
+  _                   _
  | | _____   __ _ ___| |_
  | |/ / _ \ / _` / __| __|
  |   < (_) | (_| \__ \ |_
@@ -45,10 +45,14 @@ Koast includes an initializer option. simply type `koast init` from  your projec
 ? Package name: koast-app
 ? Description: A koast app
 ? Include frontend: Yes
+? Include default gulpfile: Yes
 
 ```
 
-This will generate a bare-bones application, that once completed start the application - `node server/app.js` and point your browser at http://localhost:3000/api/koast
+This will generate a bare-bones application, that once completed start the application - `node server/app.js` and point your browser at http://localhost:3000/api/koast.
+If you opt into everything (and we recommend you do) you should be left with a repository that has a basic gulp configuration for testing (run `gulp mocha`). Test files
+by default are denoted by prepending `.test` to `.js`, like `x.test.js`. The client will contain a barebones angular app, the entry point being in `client/app/app.js`.
+
 
 ## Structure Created ##
 
@@ -62,7 +66,7 @@ This will generate a bare-bones application, that once completed start the appli
 ├── server
 |   ├── app.js       -- server application
 |   └── api.js       -- example api
-
+└── gulpfile.js      -- only if 'include default gulpfile'
 ```
 
 
