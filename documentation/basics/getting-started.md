@@ -33,7 +33,7 @@ and in your application directory:
 
 # Koast Init #
 
-Koast includes an initializer option. simply type `koast init` from  your project directory and it will prompt you for a few basic questions.
+Koast includes an initializer option. Simply type `koast init` from  your project directory and it will prompt you for a few basic questions.
 
 ```
  _                   _
@@ -48,7 +48,7 @@ Koast includes an initializer option. simply type `koast init` from  your projec
 
 ```
 
-This will generate a bare-bones application, that once completed start the application - `node server/app.js` and point your browser at http://localhost:3000/api/koast
+This will generate a bare-bones application, that once completed starts the application - `node server/app.js` and point your browser at http://localhost:3000/api/koast
 
 ## Structure Created ##
 
@@ -82,4 +82,4 @@ kaost.serve();
 
 Fire up the application with `node server/app.js`, and you should land on a basic page.
 
-You do not need to explciitly set any configuration or defaults, as koast will provide a few default settings that you can later override.
+You do not need to explcitly set any configurations or defaults, as koast will provide a few default settings that you can later override.
