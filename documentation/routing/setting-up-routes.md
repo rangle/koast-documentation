@@ -50,7 +50,7 @@ export.routes = [{
 }]
 {% endhighlight %}
 
-Koast 0.4.x now expects the format:
+*Koast 0.4.x now expects the format:*
 
 {% highlight javascript %}
 var router = require('express').Router();
@@ -63,6 +63,11 @@ exports.koastModule =
       return true;
     }
   },
+
+  //
+  // NOTE:
+  // router can also be a promise, if it resolves to an express router
+  //
   router: router
 
 }
