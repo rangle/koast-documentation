@@ -16,6 +16,7 @@ anchors:
   password---tokens : Password - Tokens
   oauth-setup : OAuth Setup
   oauth---tokens : OAuth Tokens
+  oauth---custom-callback : OAuth Custom Callback
 ---
 
 # Authentication Options #
@@ -153,3 +154,34 @@ If you are using koast-angular: `koast.user.initiateOauthAuthentication('faceboo
 If you are not using koast-angular, the api server will redirect to the clientReturnUrl with a queryString 'redirectToken'. This is a short-lived token that you will need to refresh soon.
 
 ~~todo: example implementation~~
+
+### OAuth - Custom Callback ###
+
+If you need to perform steps after the OAuth authentication process Koast makes it possible to provide a custom authentication module.
+This module will be able to handle the <b>success</b> callback from an OAuth provider.  This allows for custom steps to be performed and additional security constraints to be enforced.  
+
+{% highlight javascript %}
+{
+  "authentication": {
+    "strategy": "social",
+    "maintenance": "token",
+    "clientReturnUrl": "http://localhost:8081",
+    "authenticationModule": "path:../server/authentication"
+    "whiteListAccounts": "nick@rangle.io, dean@rangle.io, yuri@rangle.io",
+  }
+}
+{% endhighlight %}
+
+To handle an OAuth callback simply provide a path to your module.  The 'path:' syntax shown above in the <b>authenticationModule</b> element is a shortstop handler.  It builds a path relative to your app.js file.  Once your custom callback is called you can apply additional security contraints.  In the example above we have a config element of whitelisted accounts.  Imagine we want to restrict access to just the top brass at Rangle.  Anyone not on this list can't login.  The OAuth provider does not know this and will permit anyone with valid Google/Facebook/etc credentials to log in.  Please note that when your authentication module is invoked the user is already logged in.  At this point you can check apply your additional security contraints and if the user should not be given access you can simply log them back out like so:
+
+{% highlight javascript %}
+req.logout();
+{% endhighlight %}
+
+You also have the option to redirect them.  Possibly to explain why they could not log in.
+
+{% highlight javascript %}
+res.redirect('/AuthenticationRestricted');
+{% endhighlight %}
+
+This notion of a whitelist is just one example.  There are any number of possible implementations.  We can apply domain restriction using this approach.  For example only allowing @rangle.io Gmail accounts.  We could perform some sort of logging of the user login process, just recording who logs in and not adding any additional security contraints.  We could take this time to pull a user settings file from the DB and keep it in memory for subsequent requests.  The custom authentication module is an 'inversion of control' putting the application developer in the drivers seat.
